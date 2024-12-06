@@ -6,6 +6,7 @@ class TranslationApi{
  late Dio dio;
   String baseUrl ='https://free-google-translator.p.rapidapi.com/external-api/free-google-translator?from=en&to=es&query=Thank%20you%20for%20choosing%20me!';
   String apiKey='0ee011003dmsh11f1e68bb377c92p11d9a0jsne667d2a39ca2';
+  TranslationApi(this.dio);
  Future<String?> translate(String text , String toLang , String fromLang) async{
    final url =
        '$baseUrl?from=$fromLang&to=$toLang&query=${Uri.encodeComponent(text)}';

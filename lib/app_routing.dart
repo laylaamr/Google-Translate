@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +26,7 @@ class AppRouting {
         return MaterialPageRoute(
           builder: (context) => BlocProvider<TranslationCubit>(
             create: (context) =>
-                TranslationCubit(TranslationRepository(TranslationApi())),
+                TranslationCubit(TranslationRepository(TranslationApi(Dio()))),
             child: Translationscreen(
              translateLanguage: translateLanguage,
             ),

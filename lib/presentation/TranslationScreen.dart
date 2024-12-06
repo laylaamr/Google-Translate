@@ -103,7 +103,7 @@ class _TranslationscreenState extends State<Translationscreen> {
                 border: InputBorder.none,
               ),
               style: const TextStyle(
-                color: Colors.black,
+                color: Colors.white70,
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:googletranslate/presentation/TranslationScreen.dart';
 
 class SelectLanguageScreen extends StatefulWidget {
   const SelectLanguageScreen({super.key});
@@ -16,6 +15,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
     'French': 'fr',
     'Spanish': 'es',
   };
+
   String? selectedLanguage;
 
   @override
@@ -24,7 +24,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            // Add back navigation logic here.
+            Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios, size: 20),
         ),
@@ -114,18 +114,25 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                   backgroundColor: Colors.blue,
                   foregroundColor: Colors.white,
                 ),
-                onPressed: (
-                    ) {
-
+                onPressed: () {
                   if (selectedLanguage != null) {
+                    final selectedLanguageCode = languages[selectedLanguage];
+
                     Navigator.pushNamed(
                       context,
                       'translate',
-                      arguments: {'translateLanguage': selectedLanguage}, // Passing arguments
+                      arguments: {'translateLanguage': selectedLanguageCode},
                     );
+
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('You selected: $selectedLanguage'),
+                        content: Text('You selected: $selectedLanguage ($selectedLanguageCode)'),
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Please select a language first'),
                       ),
                     );
                   }
@@ -142,5 +149,6 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
     );
   }
 }
+
 
 
